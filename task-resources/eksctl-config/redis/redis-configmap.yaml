@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-ss-configuration
+  namespace: demo
+  labels:
+    app: redis
+data:
+  master.conf: |
+    maxmemory 200mb
+    maxmemory-policy allkeys-lru
+    maxclients 20000
+    timeout 300
+    appendonly yes
+    protected-mode no
+    dbfilename dump.rdb
+    dir /var/lib/redis
+  slave.conf: |
+    slaveof redis-ss-0.redis-ss.redis 6379
+    maxmemory 200mb
+    maxmemory-policy allkeys-lru
+    maxclients 20000
+    timeout 300
+    dir /var/lib/redis

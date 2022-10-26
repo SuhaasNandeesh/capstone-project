@@ -1,0 +1,7 @@
+replicas: 2
+
+apiService:
+  create: true
+
+hostNetwork:
+  enabled: false
